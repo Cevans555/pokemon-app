@@ -27,7 +27,7 @@ public class RestPokeAPIService implements PokeAPIService{
             String number = pokemonString.substring(slashIndex + 1, pokemonString.length() - 1);
             int id = Integer.parseInt(number);
             pokemon.setId(id);
-           System.out.println(pokemon);
+//           System.out.println(pokemon);
             pokemonList.add(pokemon);
         }
 

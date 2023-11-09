@@ -3,14 +3,14 @@
         <h2>{{ pokemon.name }}</h2>
         <p>Height: {{ pokemon.height }}</p>
         <p>Weight: {{ pokemon.weight }}</p>
-        <p>Abilities: {{ abilities }}</p>
+        <!-- <p>Abilities: {{ abilities }}</p>
         <p>Moves: {{ moves }}</p>
         <p>Types: {{ types }}</p>
         <p>Games: {{ games }}</p>
-        <p>Stats: {{ stats }}</p>
+        <p>Stats: {{ stats }}</p> -->
         <p>Base Experience: {{ pokemon.base_experience }}</p>
         <img v-bind:src="spriteImgFront" />
-    
+        
     </div>
 </template>
 

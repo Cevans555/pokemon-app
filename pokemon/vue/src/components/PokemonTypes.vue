@@ -1,13 +1,10 @@
 <template>
     <div>
-        <h2>{{ pokemon.name }}</h2>
-        <p>{{ pokemon.abilities }}</p>
-        <ul>
-            <li>
-
-            </li>
-        </ul>
-        
+        <h2>Types</h2>
+        <!-- <p>{{ pokemon }}</p> -->
+        <p v-for="types in pokemon.types" :key="types">
+            {{ types.type.name }}
+        </p>
     </div>
 </template>
 
@@ -24,11 +21,9 @@ export default{
         }
     },
     created() {
-        PokemonService.getPokemonAbilitiesById(this.id)
+        PokemonService.getPokemonTypesById(this.id)
             .then(response => {
                 this.pokemon = response.data
-                // this.spriteImgFront = response.data.sprites.front_default
-                // this.spriteImgBack = response.data.sprites.back_default
             })
     }
 };
