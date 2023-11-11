@@ -1,128 +1,118 @@
 <template>
     <div id="pokedex">
         <div id="container">
-    <!------ LEFT SIDE ------>
-    <div id="left-side">
-        <!-- Rounded bordure left -->
-        <div id="left-side1-top-border"></div>
-        <div id="left-side2-top-border"></div>
-        <!-- Top left lights -->
-        <div id="big-blue-light-background" class="light">
-            <div id="big-blue-light" class="light"></div>
-            <div id="big-blue-light-glint" class="light"></div>
-        </div>
-        <div id="little-lights">
-            <div class="light little-light red-light"></div>
-            <div class="light little-light yellow-light"></div>
-            <div class="light little-light green-light"></div>
-        </div>
-        <!-- Left side big screen with red lights -->
-        <div id="screen-left-background">
-            <div id="screen-left-little-lights">
-                <div class="screen-left-little-red-light light"></div>
-                <div class="screen-left-little-red-light light"></div>
+            <!------ LEFT SIDE ------>
+            <div id="left-side">
+                <!-- Rounded bordure left -->
+                <div id="left-side1-top-border"></div>
+                <div id="left-side2-top-border"></div>
+                <!-- Top left lights -->
+                <div id="big-blue-light-background" class="light">
+                    <div id="big-blue-light" class="light"></div>
+                    <div id="big-blue-light-glint" class="light"></div>
+                </div>
+                <div id="little-lights">
+                    <div class="light little-light red-light"></div>
+                    <div class="light little-light yellow-light"></div>
+                    <div class="light little-light green-light"></div>
+                </div>
+                <!-- Left side big screen with red lights -->
+                <div id="screen-left-background">
+                    <div id="screen-left-little-lights">
+                        <div class="screen-left-little-red-light light"></div>
+                        <div class="screen-left-little-red-light light"></div>
+                    </div>
+                    <!-- Screen for the Pokemon images -->
+                    <div id="screen-left">
+                        <pokemon-sprites v-bind:id="$route.params.id" />
+                    </div>
+                    <div id="screen-left-big-red-light" class="light"></div>
+                    <div id="screen-left-burger">
+                        <div id="screen-left-burger-inside"></div>
+                    </div>
+                </div>
+                <!-- Console -->
+                <div id="elongated-buttons">
+                    <div class="elongated-button elongated-button1 clickable"></div>
+                    <div class="elongated-button elongated-button2 clickable"></div>
+                </div>
+                <div id="rounded-button" class="clickable"></div>
+                <div id="screen-left-little">
+                    <h1>{{ pokemon.name }}</h1>
+                </div>
+                <!-- Cross used to choose the Pokemon -->
+                <div id="cross">
+                    <div class="cross cross-top clickable">
+                        <div class="arrow arrow-top"></div>
+                    </div>
+                    <div class="cross cross-mid"></div>
+                    <div class="cross cross-bottom clickable">
+                        <div class="arrow arrow-bottom"></div>
+                    </div>
+                    <div class="cross cross-left clickable">
+                        <div class="arrow arrow-left" onclick="previousPokemon()"></div>
+                    </div>
+                    <div class="cross cross-right clickable">
+                        <div class="arrow arrow-right" onclick="nextPokemon()"></div>
+                    </div>
+                </div>
             </div>
-            <!-- Screen for the Pokemon images -->
-            <div id="screen-left">
-                <pokemon-sprites v-bind:id="$route.params.id" />
-            </div>
-            <div id="screen-left-big-red-light" class="light"></div>
-            <div id="screen-left-burger">
-                <div id="screen-left-burger-inside"></div>
-            </div>
-        </div>
-        <!-- Console -->
-        <div id="elongated-buttons">
-            <div class="elongated-button elongated-button1 clickable"></div>
-            <div class="elongated-button elongated-button2 clickable"></div>
-        </div>
-        <div id="rounded-button" class="clickable"></div>
-        <div id="screen-left-little">
-           <h1>{{ pokemon.name  }}</h1> 
-        </div>
-        <!-- Cross used to choose the Pokemon -->
-        <div id="cross">
-            <div class="cross cross-top clickable">
-                <div class="arrow arrow-top"></div>
-            </div>
-            <div class="cross cross-mid"></div>
-            <div class="cross cross-bottom clickable">
-                <div class="arrow arrow-bottom"></div>
-            </div>
-            <div class="cross cross-left clickable">
-                <div class="arrow arrow-left" onclick="previousPokemon()"></div>
-            </div>
-            <div class="cross cross-right clickable">
-                <div class="arrow arrow-right" onclick="nextPokemon()"></div>
-            </div>
-        </div>
-    </div>
 
-    <!------ MIDDLE ------>
-    <!-- Bindings -->
-    <div class="binding">
-        <div class="hinge hinge1"></div>
-        <div class="hinge hinge2"></div>
-        <div class="hinge hinge3"></div>
-    </div>
-
-    <!------ RIGHT SIDE ------>
-    <div id="right-side">
-        <!-- Rounded bordure right -->
-        <div id="round-bordure-right-side"></div>
-        <!-- Right side screen -->
-        <div id="screen-right">
-           
-        </div>
-        <!-- Right side keyboard -->
-        <div id="keyboard">
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-        </div>
-        <!-- Right elongated lights -->
-        <div id="elongated-lights">
-            <div class="key light"></div>
-            <div class="key light"></div>
-        </div>
-        <!-- Right side yellow light -->
-        <div id="right-side-yellow-light" class="light"></div>
-        <!-- Right side white buttons -->
-        <div id="white-buttons">
-            <div class="key clickable"></div>
-            <div class="key clickable"></div>
-        </div>
-        <!-- Right side grey buttons -->
-        <div id="grey-buttons">
-            <div class="key">
-                
+            <!------ MIDDLE ------>
+            <!-- Bindings -->
+            <div class="binding">
+                <div class="hinge hinge1"></div>
+                <div class="hinge hinge2"></div>
+                <div class="hinge hinge3"></div>
             </div>
-            <div class="key">
-                
+
+            <!------ RIGHT SIDE ------>
+            <div id="right-side">
+                <!-- Rounded bordure right -->
+                <div id="round-bordure-right-side"></div>
+                <!-- Right side screen -->
+                <div id="screen-right">
+                    <pokemon-abilities v-bind:id="this.id" v-bind:index="this.index" v-if="displayAbilities === true" />
+                    <pokemon-games v-bind:id="this.id" v-bind:index="this.index" v-if="displayGames === true" />
+                    <pokemon-moves v-bind:id="this.id" v-bind:index="this.index" v-if="displayMoves === true" />
+                    <pokemon-details v-bind:id="this.id" v-bind:index="this.index" v-if="displayDetails === true" />
+                    <pokemon-stats v-bind:id="this.id" v-bind:index="this.index" v-if="displayStats === true" />
+                </div>
+                <!-- Right side keyboard -->
+                <div id="keyboard">
+                    <div class="key clickable" @click="TurnDisplayAbilitiesOn"></div>
+                    <div class="key clickable" @click="TurnDisplayGamesOn"></div>
+                    <div class="key clickable" @click="TurnDisplayMovesOn"></div>
+                    <div class="key clickable" @click="TurnDisplayStatsOn"></div>
+                    <div class="key clickable" @click="TurnDisplayDetailsOn"></div>
+                    <div class="key clickable"></div>
+                    
+                </div>
+                <!-- Right elongated lights -->
+                <div id="elongated-lights">
+                    <div class="key light"></div>
+                    <div class="key light"></div>
+                </div>
+                <!-- Right side yellow light -->
+                <div id="right-side-yellow-light" class="light"></div>
+                <!-- Right side white buttons -->
+                <div id="white-buttons">
+                    <div class="key clickable" @click="prevIndex"></div>
+                    <div class="key clickable" @click="nextIndex"></div>
+                </div>
+                <!-- Right side grey buttons -->
+                <div id="grey-buttons">
+                    <div class="key">
+                        <pokemon-types v-bind:id="this.id" :i="0"/>
+                    </div>
+                    <div class="key">
+                        <pokemon-types v-bind:id="this.id" :i="1"/>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-        <h2>{{ pokemon.name }}</h2>
-        <p>Height: {{ pokemon.height }}</p>
-        <p>Weight: {{ pokemon.weight }}</p>
-        <p>Base Experience: {{ pokemon.base_experience }}</p>
-
-        <pokemon-details v-bind:id="this.id" />
-        <pokemon-abilities v-bind:id="this.id" />
-        <pokemon-games v-bind:id="this.id" />
-        <pokemon-moves v-bind:id="this.id" />
-        <pokemon-types v-bind:id="this.id" />
-        <pokemon-stats v-bind:id="this.id" />
-        <pokemon-sprites v-bind:id="this.id" />
         
+        <div class="key clickable" @click="nextIndex"></div>
     </div>
 </template>
 
@@ -150,6 +140,12 @@ export default {
         return {
             pokemon: {},
             id: this.$route.params.id,
+            index: this.$store.state.index,
+            displayAbilities: false,
+            displayGames: false,
+            displayMoves: false,
+            displayDetails: true,
+            displayStats: false,
         }
     },
     created() {
@@ -157,21 +153,57 @@ export default {
             .then(response => {
                 this.pokemon = response.data
             })
+    },
+    methods: {
+        nextIndex() {
+            this.$store.commit('NEXT_INDEX')
+            console.log(this.$store.state.index)
+        },
+        prevIndex() {
+            this.$store.commit('PREV_INDEX')
+            console.log(this.$store.state.index)
+        },
+        TurnDisplayAbilitiesOn() {
+            this.displayAbilities = true;
+            this.displayGames = false;
+            this.displayMoves = false;
+            this.displayDetails = false;
+            this.displayStats = false;
+        },
+        TurnDisplayGamesOn() {
+            this.displayAbilities = false;
+            this.displayGames = true;
+            this.displayMoves = false;
+            this.displayDetails = false;
+            this.displayStats = false;
+        },
+        TurnDisplayMovesOn() {
+            this.displayAbilities = false;
+            this.displayGames = false;
+            this.displayMoves = true;
+            this.displayDetails = false;
+            this.displayStats = false;
+        },
+        TurnDisplayDetailsOn() {
+            this.displayAbilities = false;
+            this.displayGames = false;
+            this.displayMoves = false;
+            this.displayDetails = true;
+            this.displayStats = false;
+        },
+        TurnDisplayStatsOn() {
+            this.displayAbilities = false;
+            this.displayGames = false;
+            this.displayMoves = false;
+            this.displayDetails = false;
+            this.displayStats = true;
+        },
+
     }
 };
 </script>
 
 <style>
-/*------ GENERAL ------*/
-
-/* body {
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-} */
-
 #container {
     display: flex;
     justify-content: center;
@@ -364,8 +396,13 @@ export default {
 }
 
 @keyframes winkLight {
-    0% { background-color: #C10C0C; }
-    100% { background-color: #8a0606; }
+    0% {
+        background-color: #C10C0C;
+    }
+
+    100% {
+        background-color: #8a0606;
+    }
 }
 
 
@@ -451,7 +488,7 @@ export default {
     white-space: nowrap;
     width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     font-size: 1.5rem;
 }
 
@@ -652,7 +689,7 @@ export default {
 }
 
 #keyboard .key {
-    width: 54px;
+    width: 75px;
     height: 42px;
     border-radius: 10px;
     background: linear-gradient(180deg, rgba(40, 170, 253, 1) 0%, rgba(85, 184, 247, 1) 50%, rgba(40, 170, 253, 1) 100%);

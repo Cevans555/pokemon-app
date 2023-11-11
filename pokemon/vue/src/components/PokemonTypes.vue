@@ -1,29 +1,29 @@
 <template>
     <div>
-        <h2>Types</h2>
-        <!-- <p>{{ pokemon }}</p> -->
-        <p v-for="types in pokemon.types" :key="types">
-            {{ types.type.name }}
-        </p>
+        <p>{{ types[i] }}</p>
     </div>
 </template>
 
 <script>
 import PokemonService from '../services/PokemonService.js'
 export default{
-    name: 'PokemonDetails',
+    name: 'PokemonTypes',
     props: {
         id: Number, String,
+        i: Number,
     },
     data() {
         return {
-            pokemon: {},
+            types: [],
         }
     },
     created() {
         PokemonService.getPokemonTypesById(this.id)
             .then(response => {
-                this.pokemon = response.data
+                response.data.types.forEach(element => {
+                    this.types.push(element.type.name)
+                });
+                console.log(this.types)
             })
     }
 };

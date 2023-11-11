@@ -12,7 +12,7 @@
 <script>
 import PokemonService from '../services/PokemonService.js'
 export default{
-    name: 'PokemonDetails',
+    name: 'PokemonSprites',
     props: {
         id: Number, String,
     },
