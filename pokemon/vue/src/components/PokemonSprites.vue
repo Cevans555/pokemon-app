@@ -1,11 +1,6 @@
 <template>
     <div id="sprites">
-        <!-- <h2>Sprites</h2> -->
-        <!-- {{ pokemon }} -->
-        <img :src="officialArtFrontDefault" alt="Official Art Front Default">
-        <!-- <p v-for="sprites in pokemon.sprites" :key="sprites">
-            {{ sprites }}
-        </p> -->
+        <img :src="image" alt="Pokemon Sprite">
     </div>
 </template>
 
@@ -19,16 +14,40 @@ export default{
     data() {
         return {
             pokemon: {},
-            officialArtFrontDefault: '',
+            // officialArtFrontDefault: '',
+            image: '',
+            sprites: [],
+
         }
     },
     created() {
         PokemonService.getPokemonSpritesById(this.id)
             .then(response => {
                 this.pokemon = response.data
-                this.officialArtFrontDefault = this.pokemon.sprites.other['official-artwork'].front_default
-            })
-    }
+                // this.officialArtFrontDefault = this.pokemon.sprites.other['official-artwork'].front_default
+                this.sprites.push(this.pokemon.sprites.other['official-artwork'].front_default)
+                this.sprites.push(this.pokemon.sprites.other['official-artwork'].front_shiny)
+                this.sprites.push(this.pokemon.sprites.front_default)
+                this.sprites.push(this.pokemon.sprites.back_default)
+                this.sprites.push(this.pokemon.sprites.front_female)
+                this.sprites.push(this.pokemon.sprites.back_female)
+                this.sprites.push(this.pokemon.sprites.front_shiny)
+                this.sprites.push(this.pokemon.sprites.back_shiny)
+                this.sprites.push(this.pokemon.sprites.front_shiny_female)
+                this.sprites.push(this.pokemon.sprites.back_shiny_female)
+
+                this.sprites = this.sprites.filter(sprite => sprite !== null);
+                this.fetchSprite();
+            });
+    },
+    methods:{
+        fetchSprite(){
+            this.image = this.sprites[this.$store.state.spriteIndex]
+        }
+    },
+    watch: {
+        '$store.state.spriteIndex': 'fetchSprite',
+    },
 };
 </script>
 

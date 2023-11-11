@@ -25,7 +25,7 @@ export default {
         this.fetchstats();
     },
     watch: {
-        '$store.state.index': 'fetchstats',
+        '$store.state.attributeIndex': 'fetchstats',
     },
     methods: {
         fetchstats() {
@@ -33,7 +33,7 @@ export default {
                 .then(response => {
                     console.log(response.data.stats);
                     this.stats = {};
-                    for (let i = this.$store.state.index; i < response.data.stats.length; i++) {
+                    for (let i = this.$store.state.attributeIndex; i < response.data.stats.length; i++) {
                         const stat = response.data.stats[i];
                         this.stats[stat.stat.name] = stat.base_stat;
 

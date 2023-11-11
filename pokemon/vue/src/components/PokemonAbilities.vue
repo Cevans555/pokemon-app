@@ -25,7 +25,7 @@ export default{
         this.fetchAbilities();
     },
     watch: {
-        '$store.state.index': 'fetchAbilities',
+        '$store.state.attributeIndex': 'fetchAbilities',
     },
     methods: {
         fetchAbilities() {
@@ -33,7 +33,7 @@ export default{
                 .then(response => {
                     console.log(response.data.abilities);
                     this.abilities = [];
-                    for (let i = this.$store.state.index; i < response.data.abilities.length; i++) {
+                    for (let i = this.$store.state.attributeIndex; i < response.data.abilities.length; i++) {
                         this.abilities.push(response.data.abilities[i].ability.name);
                         if (this.abilities.length >= 4) {
                             break;

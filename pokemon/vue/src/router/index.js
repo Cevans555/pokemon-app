@@ -60,7 +60,7 @@ const router = new Router({
       name: "pokemon",
       component: Pokemon,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -68,7 +68,7 @@ const router = new Router({
       name: "pokemonDetails",
       component: PokemonDetails,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     }
   ]

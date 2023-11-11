@@ -42,17 +42,17 @@
                 </div>
                 <!-- Cross used to choose the Pokemon -->
                 <div id="cross">
-                    <div class="cross cross-top clickable">
-                        <div class="arrow arrow-top"></div>
+                    <div class="cross cross-top clickable" >
+                        <div class="arrow arrow-top" @click="prevPokemon"></div>
                     </div>
                     <div class="cross cross-mid"></div>
-                    <div class="cross cross-bottom clickable">
+                    <div class="cross cross-bottom clickable" @click="nextPokemon">
                         <div class="arrow arrow-bottom"></div>
                     </div>
-                    <div class="cross cross-left clickable">
+                    <div class="cross cross-left clickable" @click="prevSpriteIndex">
                         <div class="arrow arrow-left" onclick="previousPokemon()"></div>
                     </div>
-                    <div class="cross cross-right clickable">
+                    <div class="cross cross-right clickable" @click="nextSpriteIndex">
                         <div class="arrow arrow-right" onclick="nextPokemon()"></div>
                     </div>
                 </div>
@@ -72,11 +72,11 @@
                 <div id="round-bordure-right-side"></div>
                 <!-- Right side screen -->
                 <div id="screen-right">
-                    <pokemon-abilities v-bind:id="this.id" v-bind:index="this.index" v-if="displayAbilities === true" />
-                    <pokemon-games v-bind:id="this.id" v-bind:index="this.index" v-if="displayGames === true" />
-                    <pokemon-moves v-bind:id="this.id" v-bind:index="this.index" v-if="displayMoves === true" />
-                    <pokemon-details v-bind:id="this.id" v-bind:index="this.index" v-if="displayDetails === true" />
-                    <pokemon-stats v-bind:id="this.id" v-bind:index="this.index" v-if="displayStats === true" />
+                    <pokemon-abilities v-bind:id="this.id" v-bind:attributeIndex="this.attributeIndex" v-if="displayAbilities === true" />
+                    <pokemon-games v-bind:id="this.id" v-bind:attributeIndex="this.attributeIndex" v-if="displayGames === true" />
+                    <pokemon-moves v-bind:id="this.id" v-bind:attributeIndex="this.attributeIndex" v-if="displayMoves === true" />
+                    <pokemon-details v-bind:id="this.id" v-bind:attributeIndex="this.attributeIndex" v-if="displayDetails === true" />
+                    <pokemon-stats v-bind:id="this.id" v-bind:attributeIndex="this.attributeIndex" v-if="displayStats === true" />
                 </div>
                 <!-- Right side keyboard -->
                 <div id="keyboard">
@@ -97,8 +97,8 @@
                 <div id="right-side-yellow-light" class="light"></div>
                 <!-- Right side white buttons -->
                 <div id="white-buttons">
-                    <div class="key clickable" @click="prevIndex"></div>
-                    <div class="key clickable" @click="nextIndex"></div>
+                    <div class="key clickable" @click="prevAttributeIndex"></div>
+                    <div class="key clickable" @click="nextAttributeIndex"></div>
                 </div>
                 <!-- Right side grey buttons -->
                 <div id="grey-buttons">
@@ -112,7 +112,7 @@
             </div>
         </div>
         
-        <div class="key clickable" @click="nextIndex"></div>
+        <div class="key clickable" @click="nextAttributeIndex"></div>
     </div>
 </template>
 
@@ -139,8 +139,8 @@ export default {
     data() {
         return {
             pokemon: {},
-            id: this.$route.params.id,
-            index: this.$store.state.index,
+            id: parseInt(this.$route.params.id),
+            attributeIndex: this.$store.state.attributeIndex,
             displayAbilities: false,
             displayGames: false,
             displayMoves: false,
@@ -149,19 +149,40 @@ export default {
         }
     },
     created() {
-        PokemonService.getPokemonDetailsById(this.id)
-            .then(response => {
-                this.pokemon = response.data
-            })
+        this.loadPokemonDetails();
     },
     methods: {
-        nextIndex() {
-            this.$store.commit('NEXT_INDEX')
-            console.log(this.$store.state.index)
+        loadPokemonDetails(){
+            PokemonService.getPokemonDetailsById(this.id)
+            .then(response => {
+                this.pokemon = response.data
+            });
         },
-        prevIndex() {
-            this.$store.commit('PREV_INDEX')
-            console.log(this.$store.state.index)
+        nextPokemon() {
+            this.$router.push({ name: 'pokemonDetails', params: { id: this.id + 1 } })
+            this.id = this.id + 1;
+            window.location.reload();
+        },
+        prevPokemon() {
+            this.$router.push({ name: 'pokemonDetails', params: { id: this.id - 1 } })
+            this.id = this.id - 1;
+            window.location.reload();
+        },
+        nextAttributeIndex() {
+        this.$store.commit('NEXT_ATTRIBUTE_INDEX')
+            // console.log(this.$store.state.attributeIndex)
+        },
+        prevAttributeIndex() {
+            this.$store.commit('PREV_ATTRIBUTE_INDEX')
+            // console.log(this.$store.state.attributeIndex)
+        },
+        nextSpriteIndex() {
+        this.$store.commit('NEXT_SPRITE_INDEX')
+            // console.log(this.$store.state.spriteIndex)
+        },
+        prevSpriteIndex() {
+            this.$store.commit('PREV_SPRITE_INDEX')
+            // console.log(this.$store.state.spriteIndex)
         },
         TurnDisplayAbilitiesOn() {
             this.displayAbilities = true;
@@ -258,7 +279,7 @@ export default {
     width: 160px;
     height: 60px;
     position: absolute;
-    z-index: 2;
+    z-attributeIndex: 2;
     border-bottom: 2px solid rgba(96, 6, 6, 1);
     border-right: 2px solid rgba(96, 6, 6, 1);
     top: 50px;

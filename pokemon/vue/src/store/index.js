@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    index: 0,
+    attributeIndex: 0,
+    spriteIndex: 0,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -39,11 +40,17 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    NEXT_INDEX(state) {
-      state.index += 4;
+    NEXT_ATTRIBUTE_INDEX(state) {
+      state.attributeIndex += 4;
     },
-    PREV_INDEX(state) {
-      state.index -= 4;
+    PREV_ATTRIBUTE_INDEX(state) {
+      state.attributeIndex -= 4;
+    },
+    NEXT_SPRITE_INDEX(state) {
+      state.spriteIndex += 1;
+    },
+    PREV_SPRITE_INDEX(state) {
+      state.spriteIndex -= 1;
     }
   }
 })

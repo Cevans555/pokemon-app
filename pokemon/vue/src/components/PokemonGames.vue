@@ -27,14 +27,14 @@ export default{
         this.fetchGames();
     },
     watch: {
-        '$store.state.index': 'fetchGames',
+        '$store.state.attributeIndex': 'fetchGames',
     },
     methods: {
         fetchGames() {
             PokemonService.getPokemonInGamesById(this.id)
                 .then(response => {
                     this.games = [];
-                    for (let i = this.$store.state.index; i < response.data.game_indices.length; i++) {
+                    for (let i = this.$store.state.attributeIndex; i < response.data.game_indices.length; i++) {
                         this.games.push(response.data.game_indices[i].version.name);
                         if (this.games.length >= 4) {
                             break;

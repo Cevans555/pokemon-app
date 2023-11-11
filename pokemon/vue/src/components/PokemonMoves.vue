@@ -25,14 +25,14 @@ export default{
         this.fetchmoves();
     },
     watch: {
-        '$store.state.index': 'fetchmoves',
+        '$store.state.attributeIndex': 'fetchmoves',
     },
     methods: {
         fetchmoves() {
             PokemonService.getPokemonMovesById(this.id)
                 .then(response => {
                     this.moves = [];
-                    for (let i = this.$store.state.index; i < response.data.moves.length; i++) {
+                    for (let i = this.$store.state.attributeIndex; i < response.data.moves.length; i++) {
                         this.moves.push(response.data.moves[i].move.name);
                         if (this.moves.length >= 4) {
                             break;
